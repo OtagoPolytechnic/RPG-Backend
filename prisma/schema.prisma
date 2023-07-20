@@ -9,3 +9,31 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum Role {
+  SUPER_ADMIN
+  BASIC
+}
+
+enum Faction {
+  HUMAN
+  ORC
+  ELF
+  DWARF
+  UNDEAD
+}
+
+model Player {
+  name String @unique
+  faction Faction
+  health Int
+}
+
+model User {
+  id                  Int                  @id @default(autoincrement()) 
+  username            String               @unique
+  password            String
+  role                Role                 @default(BASIC)
+  createdAt           DateTime             @default(now())
+}
+
