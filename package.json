@@ -22,10 +22,16 @@
   "homepage": "https://github.com/CalebStephens/RPG-Backend#readme",
   "dependencies": {
     "@prisma/client": "^5.0.0",
-    "commitizen": "^4.3.0",
     "nodemon": "^3.0.1"
   },
   "devDependencies": {
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "prisma": "^5.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
