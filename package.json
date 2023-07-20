@@ -1,0 +1,31 @@
+{
+  "name": "rpg-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "run": "nodemon app.js",
+    "commit": "git-cz",
+    "migration": "npx prisma migrate reset && npx prisma migrate dev",
+    "migrate": "npx prisma migrate dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CalebStephens/RPG-Backend.git"
+  },
+  "author": "Caleb Stephens & Marco Koen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CalebStephens/RPG-Backend/issues"
+  },
+  "homepage": "https://github.com/CalebStephens/RPG-Backend#readme",
+  "dependencies": {
+    "@prisma/client": "^5.0.0",
+    "commitizen": "^4.3.0",
+    "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "prisma": "^5.0.0"
+  }
+}
