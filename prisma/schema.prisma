@@ -15,17 +15,17 @@ enum Role {
   BASIC
 }
 
-enum Faction {
-  HUMAN
-  ORC
-  ELF
-  DWARF
-  UNDEAD
+enum Classes {
+  FIGHTER
+  RANGER
+  TANK
+  HEALER
+  ROGUE
 }
 
 model Player {
   name String @unique
-  faction Faction
+  class Classes
   health Int
 }
 
