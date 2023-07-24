@@ -19,57 +19,16 @@ const prisma = new PrismaClient();
  */
 const register = async (req, res) => {
   try {
-    let { firstName, lastName, email, password, confirmPassword, profilePicture, username, role } =
+    let { username, password, role, createdAt} =
       req.body;
 
-    // Define the Joi schema for input validation
-    const userSchema = Joi.object({
-      firstName: Joi.string().min(2).max(50).required().messages({
-        'string.min': 'First name must have a minimum length of 2 characters',
-        'string.max': 'First name must have a maximum length of 50 characters',
-      }),
-      lastName: Joi.string().min(2).max(50).required().messages({
-        'string.min': 'Last name must have a minimum length of 2 characters',
-        'string.max': 'Last name must have a maximum length of 50 characters',
-      }),
-      username: Joi.string().min(5).max(10).alphanum().required().messages({
-        'string.alphanum': 'Username must contain only alphanumeric characters',
-        'string.min': 'Username must have a minimum length of 5 characters',
-        'string.max': 'Username must have a maximum length of 10 characters',
-      }),
-      email: Joi.string()
-        .email({ tlds: { allow: false } })
-        .pattern(new RegExp(`^${username}@\\w+\\.\\w+$`))
-        .required()
-        .messages({
-          'string.email': 'Email address must be valid',
-          'any.required': 'Email address is required',
-        }),
-      password: Joi.string()
-        .min(8)
-        .max(16)
-        .pattern(/^(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/)
-        .required()
-        .messages({
-          'string.min': 'Password must have a minimum length of 8 characters',
-          'string.max': 'Password must have a maximum length of 16 characters',
-          'string.pattern.base':
-            'Password must contain at least one numeric character and one special character',
-        }),
-      confirmPassword: Joi.string().valid(Joi.ref('password')).required().messages({
-        'any.only': 'Confirm password must match the password',
-        'any.required': 'Confirm password is required',
-      }),
-    });
 
     // Validate the input data against the schema
     const { error, value } = userSchema.validate({
-      firstName,
-      lastName,
       username,
-      email,
       password,
-      confirmPassword,
+      role,
+      createdAt,
     });
 
     if (error) {
@@ -103,13 +62,10 @@ const register = async (req, res) => {
 
     user = await prisma.user.create({
       data: {
-        firstName,
-        lastName,
         username,
-        email,
-        profilePicture,
-        password: hashedPassword,
+        password,
         role,
+        createdAt,
       },
     });
 
@@ -139,11 +95,12 @@ const register = async (req, res) => {
  */
 const login = async (req, res) => {
   try {
-    const { email, password, username } = req.body;
+    let { username, password, role, createdAt} =
+      req.body;
 
     // Find a user with the provided email or username
     let user = await prisma.user.findFirst({
-      where: { OR: [{ email }, { username }] },
+      where: { OR: [{ username }] },
     });
 
     if (!user) {
