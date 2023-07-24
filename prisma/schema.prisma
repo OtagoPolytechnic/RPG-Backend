@@ -16,11 +16,16 @@ enum Role {
 }
 
 enum Classes {
-  FIGHTER
-  RANGER
-  TANK
-  HEALER
-  ROGUE
+  FIGHTER 
+  RANGED
+  MAGE
+}
+
+enum Stats {
+  STRENGTH
+  DEXTERITY
+  INTELLIGENCE
+  ENDURANCE
 }
 
 model Player {
