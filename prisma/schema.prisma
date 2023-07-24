@@ -15,18 +15,26 @@ enum Role {
   BASIC
 }
 
-enum Classes {
-  FIGHTER
-  RANGER
-  TANK
-  HEALER
-  ROGUE
+// enum Build {
+//   FIGHTER
+//   RANGER
+//   TANK
+//   HEALER
+//   ROGUE
+// }
+
+model Build{
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  players Player[]
 }
 
 model Player {
   name String @unique
-  class Classes
   health Int
+  buildId Int
+  build Build @relation(fields: [buildId], references: [id],onDelete: Cascade)
 }
 
 model User {

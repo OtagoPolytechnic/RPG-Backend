@@ -13,7 +13,7 @@ import rateLimit from 'express-rate-limit';
 
 import auth from './routes/v1/auth.js';
 import authRoute from './middleware/authRoute.js';
-import seedClasses from './controllers/v1/seedClasses.js';
+import seedClasses from './controllers/v1/seedBuilds.js';
 
 dotenv.config();
 const app = express();
