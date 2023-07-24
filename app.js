@@ -13,6 +13,7 @@ import rateLimit from 'express-rate-limit';
 
 import auth from './routes/v1/auth.js';
 import authRoute from './middleware/authRoute.js';
+import seedClasses from './controllers/v1/seedClasses.js';
 
 dotenv.config();
 const app = express();
@@ -50,6 +51,8 @@ const getAvailableEndpoints = () => {
   });
   return data;
 };
+
+app.use(`/${BASE_URL}/${CURRENT_VERSION}/admin/seed`, seedClasses);
 
 app.use(`/${BASE_URL}/${CURRENT_VERSION}/auth`, auth);
 app.get(`/${BASE_URL}/${CURRENT_VERSION}`, (req, res) =>
