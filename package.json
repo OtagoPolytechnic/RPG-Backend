@@ -11,6 +11,9 @@
     "migrate": "npx prisma migrate dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CalebStephens/RPG-Backend.git"

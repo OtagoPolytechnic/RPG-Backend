@@ -15,13 +15,6 @@ enum Role {
   BASIC
 }
 
-enum Stats {
-  STRENGTH
-  DEXTERITY
-  INTELLIGENCE
-  ENDURANCE
-}
-
 enum Gender {
   MALE
   FEMALE
