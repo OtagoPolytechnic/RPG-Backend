@@ -22,15 +22,22 @@ enum Stats {
   ENDURANCE
 }
 
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
 model Build{
   id Int @id @default(autoincrement())
   title String
   description String
-  players Player[]
+  character Character[]
 }
 
-model Player {
+model Character {
   name String @unique
+  gender Gender
   health Int
   buildId Int
   build Build @relation(fields: [buildId], references: [id],onDelete: Cascade)
