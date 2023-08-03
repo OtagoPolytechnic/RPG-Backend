@@ -15,13 +15,12 @@ enum Role {
   BASIC
 }
 
-// enum Build {
-//   FIGHTER
-//   RANGER
-//   TANK
-//   HEALER
-//   ROGUE
-// }
+enum Stats {
+  STRENGTH
+  DEXTERITY
+  INTELLIGENCE
+  ENDURANCE
+}
 
 model Build{
   id Int @id @default(autoincrement())
