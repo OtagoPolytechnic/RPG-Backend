@@ -1,17 +1,20 @@
 -- CreateEnum
 CREATE TYPE "Role" AS ENUM ('SUPER_ADMIN', 'BASIC');
 
--- CreateEnum
-CREATE TYPE "Classes" AS ENUM ('FIGHTER', 'RANGED', 'MAGE');
+-- CreateTable
+CREATE TABLE "Build" (
+    "id" SERIAL NOT NULL,
+    "title" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
 
--- CreateEnum
-CREATE TYPE "Stats" AS ENUM ('STRENGTH', 'DEXTERITY', 'INTELLIGENCE', 'ENDURANCE');
+    CONSTRAINT "Build_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateTable
 CREATE TABLE "Player" (
     "name" TEXT NOT NULL,
-    "class" "Classes" NOT NULL,
-    "health" INTEGER NOT NULL
+    "health" INTEGER NOT NULL,
+    "buildId" INTEGER NOT NULL
 );
 
 -- CreateTable
@@ -30,3 +33,6 @@ CREATE UNIQUE INDEX "Player_name_key" ON "Player"("name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
+
+-- AddForeignKey
+ALTER TABLE "Player" ADD CONSTRAINT "Player_buildId_fkey" FOREIGN KEY ("buildId") REFERENCES "Build"("id") ON DELETE CASCADE ON UPDATE CASCADE;

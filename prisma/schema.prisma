@@ -15,23 +15,25 @@ enum Role {
   BASIC
 }
 
-enum Classes {
-  FIGHTER 
-  RANGED
-  MAGE
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
 }
 
-enum Stats {
-  STRENGTH
-  DEXTERITY
-  INTELLIGENCE
-  ENDURANCE
+model Build{
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  character Character[]
 }
 
-model Player {
+model Character {
   name String @unique
-  class Classes
+  gender Gender
   health Int
+  buildId Int
+  build Build @relation(fields: [buildId], references: [id],onDelete: Cascade)
 }
 
 model User {

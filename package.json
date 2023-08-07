@@ -5,11 +5,14 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "run": "nodemon app.js",
+    "start": "nodemon app.js",
     "commit": "git-cz",
     "migration": "npx prisma migrate reset && npx prisma migrate dev",
     "migrate": "npx prisma migrate dev",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
   },
   "repository": {
     "type": "git",
@@ -23,6 +26,7 @@
   "homepage": "https://github.com/CalebStephens/RPG-Backend#readme",
   "dependencies": {
     "@prisma/client": "^5.0.0",
+    "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
