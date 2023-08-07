@@ -21,26 +21,32 @@ enum Gender {
   OTHER
 }
 
-model Build{
-  id Int @id @default(autoincrement())
-  title String
+model Build {
+  id          Int         @id @default(autoincrement())
+  title       String
   description String
-  character Character[]
+  character   Character[]
 }
 
 model Character {
-  name String @unique
-  gender Gender
-  health Int
+  name    String @unique
+  gender  Gender
+  health  Int
+  attack  Int
+  defense Int
+  mana    Int
+  agility Int
   buildId Int
-  build Build @relation(fields: [buildId], references: [id],onDelete: Cascade)
+  userId  Int
+  build   Build  @relation(fields: [buildId], references: [id], onDelete: Cascade)
+  user    User   @relation(fields: [userId], references: [id])
 }
 
 model User {
-  id                  Int                  @id @default(autoincrement()) 
-  username            String               @unique
-  password            String
-  role                Role                 @default(BASIC)
-  createdAt           DateTime             @default(now())
+  id         Int         @id @default(autoincrement())
+  username   String      @unique
+  password   String
+  role       Role        @default(BASIC)
+  createdAt  DateTime    @default(now())
+  characters Character[]
 }
-
