@@ -10,7 +10,7 @@
     "migration": "npx prisma migrate reset && npx prisma migrate dev",
     "migrate": "npx prisma migrate dev",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cypress:open": "cypress open --config watchForFileChanges=false"
+    "cypress": "cypress open --config watchForFileChanges=false"
   },
   "prisma": {
     "schema": "prisma/schema.prisma"
