@@ -9,7 +9,8 @@
     "commit": "git-cz",
     "migration": "npx prisma migrate reset && npx prisma migrate dev",
     "migrate": "npx prisma migrate dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cypress open --config watchForFileChanges=false"
   },
   "prisma": {
     "schema": "prisma/schema.prisma"
@@ -42,6 +43,7 @@
   },
   "devDependencies": {
     "commitizen": "^4.3.0",
+    "cypress": "^12.17.3",
     "cz-conventional-changelog": "^3.3.0",
     "prisma": "^5.0.0"
   },
