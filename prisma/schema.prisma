@@ -15,18 +15,25 @@ enum Role {
   BASIC
 }
 
-enum Faction {
-  HUMAN
-  ORC
-  ELF
-  DWARF
-  UNDEAD
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
 }
 
-model Player {
+model Build{
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  character Character[]
+}
+
+model Character {
   name String @unique
-  faction Faction
+  gender Gender
   health Int
+  buildId Int
+  build Build @relation(fields: [buildId], references: [id],onDelete: Cascade)
 }
 
 model User {

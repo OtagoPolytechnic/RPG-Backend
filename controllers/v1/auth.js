@@ -23,22 +23,22 @@ const register = async (req, res) => {
       req.body;
 
 
-    // Validate the input data against the schema
-    const { error, value } = userSchema.validate({
-      username,
-      password,
-      role,
-      createdAt,
-    });
+    // // Validate the input data against the schema
+    // const { error, value } = userSchema.validate({
+    //   username,
+    //   password,
+    //   role,
+    //   createdAt,
+    // });
 
-    if (error) {
-      // Validation failed, return an error response
-      return res.status(400).json({ error: error.details[0].message });
-    }
+    // if (error) {
+    //   // Validation failed, return an error response
+    //   return res.status(400).json({ error: error.details[0].message });
+    // }
 
     // Check if a user with the same email or username already exists
     let user = await prisma.user.findFirst({
-      where: { OR: [{ email }, { username }] },
+      where: { OR: [{ username }] },
     });
 
     if (user) {
@@ -51,7 +51,6 @@ const register = async (req, res) => {
      */
     const salt = await bcryptjs.genSalt();
 
-    profilePicture = `https://api.dicebear.com/6.x/pixel-art/svg?seed=${username}`;
 
     /**
      * Generate a hash for a given string. The first argument
@@ -63,7 +62,7 @@ const register = async (req, res) => {
     user = await prisma.user.create({
       data: {
         username,
-        password,
+        password : hashedPassword,
         role,
         createdAt,
       },
@@ -95,7 +94,7 @@ const register = async (req, res) => {
  */
 const login = async (req, res) => {
   try {
-    let { username, password, role, createdAt} =
+    let { username, password} =
       req.body;
 
     // Find a user with the provided email or username
@@ -104,7 +103,7 @@ const login = async (req, res) => {
     });
 
     if (!user) {
-      return res.status(401).json({ msg: 'Invalid email or username' });
+      return res.status(401).json({ msg: 'Invalid  username' });
     }
 
     /**
@@ -112,7 +111,7 @@ const login = async (req, res) => {
      * hash, i.e., user's hashed password
      */
     const isPasswordCorrect = await bcryptjs.compare(password, user.password);
-
+    
     if (!isPasswordCorrect) {
       return res.status(401).json({ msg: 'Invalid password' });
     }
