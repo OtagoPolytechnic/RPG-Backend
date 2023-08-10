@@ -22,19 +22,28 @@ const register = async (req, res) => {
     let { username, password, role, createdAt} =
       req.body;
 
+      // Define the Joi schema for input validation
+    const userSchema = Joi.object({
+      username: Joi.string().min(2).max(50).required().messages({
+        'string.min': 'First name must have a minimum length of 2 characters',
+        'string.max': 'First name must have a maximum length of 50 characters',
+      }),
+      password: Joi.string().min(5).max(20).required().messages({
+        'string.min': 'Username must have a minimum length of 5 characters',
+        'string.max': 'Username must have a maximum length of 20 characters',
+      }),
+    });
 
-    // // Validate the input data against the schema
-    // const { error, value } = userSchema.validate({
-    //   username,
-    //   password,
-    //   role,
-    //   createdAt,
-    // });
+    // Validate the input data against the schema
+    const { error, value } = userSchema.validate({
+      username,
+      password,
+    });
 
-    // if (error) {
-    //   // Validation failed, return an error response
-    //   return res.status(400).json({ error: error.details[0].message });
-    // }
+    if (error) {
+      // Validation failed, return an error response
+      return res.status(400).json({ error: error.details[0].message });
+    }
 
     // Check if a user with the same email or username already exists
     let user = await prisma.user.findFirst({
