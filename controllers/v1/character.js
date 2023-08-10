@@ -18,8 +18,12 @@ const createCharacter = async (req, res) => {
                 buildId: req.body.build,
                 gender: req.body.gender,
                 health: req.body.health,
+                attack: 1,
+                defense: 1,
+                mana: 1,
+                agility: 1,
+                userId: user.id
             },});
-
 
         console.log(player)
         return res.status(200).json({data: player});
