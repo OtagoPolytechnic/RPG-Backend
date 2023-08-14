@@ -22,6 +22,19 @@ Welcome to the RPG-Backend, a powerful Javascript and Express-based backend appl
 - **Method:** POST
 - **Description:** Craft a unique character for a user. Users have the flexibility to create multiple characters.
 
+### Get All Characters (User Logged In)
+
+- **Endpoint:** `/character`
+- **Method:** GET
+- **Description:** Returns all characters associated with the user logged in.
+
+### Get Character (User Logged In)
+
+- **Endpoint:** `/character:name`
+- **Params:** `:name` is characters name, this is unique
+- **Method:** GET
+- **Description:** Returns the character with this name, will check it is associated with user logged in.
+
 ### Browse Builds
 
 - **Endpoint:** `/builds`
@@ -33,5 +46,3 @@ Welcome to the RPG-Backend, a powerful Javascript and Express-based backend appl
 - **Endpoint:** `/builds/create`
 - **Method:** GET
 - **Description:** Specifically designed for admin users, this endpoint facilitates the seeding of a foundational set of character builds.
-
-Embark on your RPG adventure with RPG-Backend, where registration, character creation, and build exploration await!
