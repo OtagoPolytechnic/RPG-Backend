@@ -6,4 +6,5 @@ const router = Router();
 // Get all categories and create categories
 router.route('/create').post(createCharacter);
 
+
 export default router;
