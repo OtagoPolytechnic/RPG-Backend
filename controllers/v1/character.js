@@ -4,7 +4,6 @@ const prisma = new PrismaClient();
 const createCharacter = async (req, res) => {
     try{
         const { id } = req.user;
-        console.log(id)
         const user = await prisma.user.findUnique({ where: { id: Number(id) } });
 
         if (!user) {
@@ -25,7 +24,6 @@ const createCharacter = async (req, res) => {
                 userId: user.id
             },});
 
-        console.log(player)
         return res.status(200).json({data: player});
     }catch(error){
         return res.status(500).json({error: error.message});
@@ -33,4 +31,43 @@ const createCharacter = async (req, res) => {
 
 }
 
-export { createCharacter };
+const getAllCharacters = async (req, res) => {
+
+    try{
+        const {id} = req.user;
+        const characters = await prisma.character.findMany({
+            where: {
+                userId: Number(id)
+            },
+            include: {
+                build: true
+            }
+        });
+        
+        return res.status(200).json({data: characters});
+    }catch(error){
+        return res.status(500).json({error: error.message});
+    }
+}
+
+const getCharacter = async (req, res) => {
+    try{
+        const {id} = req.user;
+        const character = await prisma.character.findUnique({
+            where: {
+                name: req.params.name,
+                userId: Number(id)
+
+            },
+            include: {
+                build: true
+            }
+        });
+        return res.status(200).json({data: character});
+    }catch(error){
+        return res.status(500).json({error: error.message});
+    }
+}
+
+
+export { createCharacter, getAllCharacters, getCharacter };
