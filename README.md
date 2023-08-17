@@ -15,11 +15,7 @@ Welcome to the RPG-Backend, a powerful Javascript and Express-based backend appl
 
 Using `npm run`
 
-- `dev`: starts local deployment using nodemon.
-- `lint`: runs a linting check over your code.
-- `prettier`: formats your code to match rules set up in `.prettierrc.json`.
-- `test`: runs any tests that may be set up.
-- `studio`: runs prisma studio.
+- `start`: starts local deployment using nodemon.
 - `migration`: runs a database migration.
 - `commit`: runs commitizen.
 - `seed:create`: creates Super Admin users.
