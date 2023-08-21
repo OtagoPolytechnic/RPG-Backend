@@ -25,17 +25,14 @@ model Build {
   id          Int         @id @default(autoincrement())
   title       String
   description String
+  stats       Json?
   character   Character[]
 }
 
 model Character {
   name    String @unique
   gender  Gender
-  health  Int
-  attack  Int
-  defense Int
-  mana    Int
-  agility Int
+  stats   Json
   buildId Int
   userId  Int
   build   Build  @relation(fields: [buildId], references: [id], onDelete: Cascade)
