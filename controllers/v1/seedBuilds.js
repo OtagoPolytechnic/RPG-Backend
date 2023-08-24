@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { PrismaClient } from '@prisma/client';
+const {PrismaClient} = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
