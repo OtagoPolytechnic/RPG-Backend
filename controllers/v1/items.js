@@ -44,10 +44,12 @@ const characterItems = async (req, res) => {
             where: {
                 characterId: Number(req.body.characterId)
             },
-            include: {
+            select: {
                 item: true
             }
+
         });
+        console.log(data);
         return res.status(200).json({data: data});
     }catch(error){
         return res.status(500).json({error: error.message});
