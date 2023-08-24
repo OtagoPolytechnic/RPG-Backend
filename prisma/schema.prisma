@@ -47,3 +47,9 @@ model User {
   createdAt  DateTime    @default(now())
   characters Character[]
 }
+
+model Location {
+  id Int @id @default(autoincrement())
+  name String @unique
+  description String
+}
