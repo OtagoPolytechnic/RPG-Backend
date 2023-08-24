@@ -34,7 +34,7 @@ const createCharacter = async (req, res) => {
                 buildId: req.body.buildId,
                 gender: req.body.gender,
                 stats: {...build.stats},
-                userId: user.id // Assign the user id to the character
+                userId: user.id, // Assign the user id to the character
             },});
 
         return res.status(200).json({data: player});

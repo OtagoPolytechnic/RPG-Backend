@@ -15,6 +15,7 @@ import auth from './routes/v1/auth.js';
 import authRoute from './middleware/authRoute.js';
 import character from './routes/v1/character.js';
 import builds from './routes/v1/builds.js';
+import items from './routes/v1/items.js';
 
 dotenv.config();
 const app = express();
@@ -53,8 +54,9 @@ const getAvailableEndpoints = () => {
   return data;
 };
 
-app.use(`/${BASE_URL}/${CURRENT_VERSION}/builds`,authRoute, builds);
+app.use(`/${BASE_URL}/${CURRENT_VERSION}/builds`, authRoute, builds);
 app.use(`/${BASE_URL}/${CURRENT_VERSION}/character`, authRoute, character);
+app.use(`/${BASE_URL}/${CURRENT_VERSION}/items`, authRoute, items);
 app.use(`/${BASE_URL}/${CURRENT_VERSION}/auth`, auth);
 app.get(`/${BASE_URL}/${CURRENT_VERSION}`, (req, res) =>
   res.status(200).json(getAvailableEndpoints())
