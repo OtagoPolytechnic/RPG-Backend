@@ -2,7 +2,7 @@
  * Handles all character related endpoints
  */
 
-const {PrismaClient} = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const createCharacter = async (req, res) => {

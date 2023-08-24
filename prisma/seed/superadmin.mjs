@@ -1,4 +1,4 @@
-const {PrismaClient} = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 import { superAdminUsers } from '../../data/superadmin.js';
 import bcryptjs from 'bcryptjs';
