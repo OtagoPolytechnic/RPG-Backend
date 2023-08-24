@@ -15,7 +15,7 @@ import auth from './routes/v1/auth.js';
 import authRoute from './middleware/authRoute.js';
 import character from './routes/v1/character.js';
 import builds from './routes/v1/builds.js';
-import location from '/routes/v1/location.js';
+import location from './routes/v1/location.js';
 
 dotenv.config();
 const app = express();
