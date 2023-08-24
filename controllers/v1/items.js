@@ -38,5 +38,35 @@ const getAllItems = async (req, res) => {
     }
 }
 
+const characterItems = async (req, res) => {
+    try{
+        const data = await prisma.itemChraracter.findMany({
+            where: {
+                characterId: Number(req.body.characterId)
+            },
+            include: {
+                item: true
+            }
+        });
+        return res.status(200).json({data: data});
+    }catch(error){
+        return res.status(500).json({error: error.message});
+    }
+}
 
-export {createItem, getAllItems};
+const addItemToCharacter = async (req, res) => {
+    try{
+        const data = await prisma.itemChraracter.create({
+            data: {
+                characterId: Number(req.body.characterId),
+                itemId: Number(req.body.itemId)
+            }
+        });
+        return res.status(200).json({data: data});
+    }catch(error){
+        return res.status(500).json({error: error.message});
+    }
+}
+
+
+export {createItem, getAllItems, characterItems, addItemToCharacter};
