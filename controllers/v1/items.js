@@ -29,4 +29,14 @@ const createItem = async (req, res) => {
 
 }
 
-export {createItem};
+const getAllItems = async (req, res) => {
+    try{
+    const data = await prisma.item.findMany();
+    return res.status(200).json({data: data});
+    }catch(error){
+        return res.status(500).json({error: error.message});
+    }
+}
+
+
+export {createItem, getAllItems};
