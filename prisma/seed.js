@@ -1,3 +1,3 @@
-import { seedSuperAdminUsers } from './seed/superadmin.js';
+import { seedSuperAdminUsers } from './seed/superadmin.mjs';
 
 await seedSuperAdminUsers();
