@@ -16,7 +16,6 @@ const createItem = async (req, res) => {
         }
 
         // const item = {...req.body};
-        console.log(req.body);
 
         const item = await prisma.item.create({
             data: { ...req.body }
@@ -49,7 +48,6 @@ const characterItems = async (req, res) => {
             }
 
         });
-        console.log(data);
         return res.status(200).json({data: data});
     }catch(error){
         return res.status(500).json({error: error.message});
