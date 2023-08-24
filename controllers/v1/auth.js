@@ -8,7 +8,8 @@ import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import Joi from 'joi';
 
-import { PrismaClient } from '@prisma/client';
+// import { PrismaClient } from '@prisma/client';
+const {PrismaClient} = require('@prisma/client');
 const prisma = new PrismaClient();
 
 /**
