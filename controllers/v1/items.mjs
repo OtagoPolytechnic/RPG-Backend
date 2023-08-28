@@ -10,6 +10,7 @@ const createItem = async (req, res) => {
 
         // Find the user using the extracted user id
         const user = await prisma.user.findUnique({ where: { id: Number(id) } });
+        console.log()
 
         if(user.role !== 'SUPER_ADMIN'){
             return res.status(401).json({error: 'You are not authorized to create an item'});
@@ -38,6 +39,20 @@ const getAllItems = async (req, res) => {
 // Get all items for a character
 const characterItems = async (req, res) => {
     try{
+        const {id} = req.user;
+        const user = await prisma.user.findUnique({ where: { id: Number(id) },
+        include: {
+            characters: true
+        }
+         });
+         
+         //check if the character belongs to the user
+         const characterAvailable = user.characters.find(character => character.id === Number(req.body.characterId));
+         if(!characterAvailable){
+                return res.status(401).json({error: 'You are not authorized to view this character'});
+         }
+            
+        
         const data = await prisma.itemChraracter.findMany({
             where: {
                 characterId: Number(req.body.characterId)
