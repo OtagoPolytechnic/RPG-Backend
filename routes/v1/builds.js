@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { getAllBuilds } from '../../controllers/v1/builds.js';
-import seedBuilds from '../../controllers/v1/seedBuilds.js';
+import { getAllBuilds } from '../../controllers/v1/builds.mjs';
+import seedBuilds from '../../controllers/v1/seedBuilds.mjs';
 
 const router = Router();
 
