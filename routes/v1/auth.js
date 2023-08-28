@@ -6,7 +6,7 @@
 import { Router } from 'express';
 const router = Router();
 
-import { register, login } from '../../controllers/v1/auth.js';
+import { register, login } from '../../controllers/v1/auth.mjs';
 
 router.route('/register').post(register);
 router.route('/login').post(login);
