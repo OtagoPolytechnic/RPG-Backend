@@ -57,7 +57,7 @@ const getAvailableEndpoints = () => {
 app.use(`/${BASE_URL}/${CURRENT_VERSION}/builds`,authRoute, builds);
 app.use(`/${BASE_URL}/${CURRENT_VERSION}/character`, authRoute, character);
 app.use(`/${BASE_URL}/${CURRENT_VERSION}/auth`, auth);
-app.use(`/${BASE_URL}/${CURRENT_VERSION}/auth`, authRoute, location);
+app.use(`/${BASE_URL}/${CURRENT_VERSION}/location`, authRoute, location);
 app.get(`/${BASE_URL}/${CURRENT_VERSION}`, (req, res) =>
   res.status(200).json(getAvailableEndpoints())
 );

@@ -1,12 +1,14 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
-import { location } from '../../data/location.js';
+import { locations } from '../../data/location.js';
 
 const seedLocations = async () => {
 
+  console.log('Starting')
   await prisma.location.createMany({
-    data: location,
+    data: locations,
   });
+  console.log(locations)
   console.log('Locations Created');
 };
 
