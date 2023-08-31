@@ -1,5 +1,5 @@
 import { seedLocations } from './location.js';
-import { seedSuperAdminUsers } from './superadmin.js';
+import { seedSuperAdminUsers } from './superadmin.mjs';
 
 const seedCombined = async () => {
   try {
