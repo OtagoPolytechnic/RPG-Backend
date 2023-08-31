@@ -14,7 +14,7 @@
   },
   "prisma": {
     "schema": "prisma/schema.prisma",
-    "seed": "node ./prisma/seed/superadmin.mjs"
+    "seed": "node ./prisma/seed/combined-seed.js "
   },
   "repository": {
     "type": "git",
