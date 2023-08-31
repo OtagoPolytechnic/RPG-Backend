@@ -9,21 +9,17 @@ const createCharacter = async (req, res) => {
     try{
         // Extract the user id from the request
         const { id } = req.user;
-        console.log(req.body.buildId)
         const {buildId} = req.body;
-        console.log(buildId)
 
        // const {buildId} = req.body.build;
         // Find the user using the extracted user id
         const user = await prisma.user.findUnique({ where: { id: Number(id) } });
 
         const build = await prisma.build.findUnique({ where: { id: Number(buildId)  } });
-        console.log(build);
 
 
          // Check if the user exists
         if (!user) {
-            console.log(user)
             return res.status(404).json({ error: 'User not found' });
         }
 
@@ -34,7 +30,7 @@ const createCharacter = async (req, res) => {
                 buildId: req.body.buildId,
                 gender: req.body.gender,
                 stats: {...build.stats},
-                userId: user.id // Assign the user id to the character
+                userId: user.id, // Assign the user id to the character
             },});
 
         return res.status(200).json({data: player});
