@@ -1,4 +1,4 @@
-describe("user create", () => {
+describe("Log in user", () => {
     let userId;
     let token;
     it("Admin user Login and get token", () => {

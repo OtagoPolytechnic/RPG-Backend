@@ -6,8 +6,8 @@ describe("existing users", () => {
   // Checks that user "Freddy Testman" already exists
   it("Checks that user 'Freddy Testman' already exists", () => {
     cy.request({
-      method: "POST",
-      url: "http://localhost:3001/api/v1/auth/register",
+      method: "GET",
+      url: "http://localhost:3001/api/v1/auth/username",
       body: {
         username: "Freddy Testman",
         // password: 'Ft3st123'
