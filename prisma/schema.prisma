@@ -15,25 +15,66 @@ enum Role {
   BASIC
 }
 
-enum Faction {
-  HUMAN
-  ORC
-  ELF
-  DWARF
-  UNDEAD
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
 }
 
-model Player {
-  name String @unique
-  faction Faction
-  health Int
+model Build {
+  id          Int         @id @default(autoincrement())
+  title       String
+  description String
+  stats       Json?
+  character   Character[]
+}
+
+model Character {
+  id            Int             @id @default(autoincrement())
+  name          String          @unique
+  gender        Gender
+  stats         Json
+  buildId       Int
+  userId        Int
+  locationId Int
+  build         Build           @relation(fields: [buildId], references: [id], onDelete: Cascade)
+  user          User            @relation(fields: [userId], references: [id])
+  location   Location @relation(fields: [locationId], references: [id])
+  itemCharacter ItemChraracter[]
+
 }
 
 model User {
-  id                  Int                  @id @default(autoincrement()) 
-  username            String               @unique
-  password            String
-  role                Role                 @default(BASIC)
-  createdAt           DateTime             @default(now())
+  id         Int         @id @default(autoincrement())
+  username   String      @unique
+  password   String
+  role       Role        @default(BASIC)
+  createdAt  DateTime    @default(now())
+  characters Character[]
+}
+
+
+model Item {
+  id            Int             @id @default(autoincrement())
+  name          String          
+  type          String
+  level         Int
+  itemCharacter ItemChraracter[]
+}
+
+model ItemChraracter {
+  id            Int             @id @default(autoincrement())
+  itemId        Int
+  characterId   Int
+  item          Item            @relation(fields: [itemId], references: [id])
+  character     Character       @relation(fields: [characterId], references: [id])
+  }
+
+model Location {
+  id          Int         @id @default(autoincrement())
+  name        String      @unique
+  description String
+  items       Int[]
+  character   Character[]
 }
 
