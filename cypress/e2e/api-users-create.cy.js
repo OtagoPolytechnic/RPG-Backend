@@ -1,7 +1,4 @@
 describe("user create", () => {
-    let userId;
-    let token;
-  
     // Registers a new user
     it("Registers a user", () => {
       cy.request({
