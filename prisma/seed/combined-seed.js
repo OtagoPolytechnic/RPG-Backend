@@ -1,15 +1,21 @@
 import { seedLocations } from './location.js';
 import { seedSuperAdminUsers } from './superadmin.mjs';
+import { seedItems } from './items.js';
+import seedBuilds from './builds.js';
+
+
 
 const seedCombined = async () => {
   try {
-    console.log('Seeding locations...');
-    await seedLocations();
-    console.log('Locations seeded successfully.');
+    
+    await seedItems();
 
-    console.log('Seeding superadmin users...');
+    await seedBuilds();
+
+    await seedLocations();
+
     await seedSuperAdminUsers();
-    console.log('Superadmin users seeded successfully.');
+
   } catch (error) {
     console.error('Error while seeding:', error);
     process.exit(1);
