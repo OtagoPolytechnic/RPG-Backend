@@ -2,7 +2,7 @@
  * Handles all character related endpoints
  */
 
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const createCharacter = async (req, res) => {
@@ -16,8 +16,6 @@ const createCharacter = async (req, res) => {
         const user = await prisma.user.findUnique({ where: { id: Number(id) } });
 
         const build = await prisma.build.findUnique({ where: { id: Number(buildId)  } });
-
-
          // Check if the user exists
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
@@ -27,10 +25,11 @@ const createCharacter = async (req, res) => {
         const player = await prisma.character.create({
             data: {
                 name: req.body.name,
-                buildId: req.body.buildId,
                 gender: req.body.gender,
                 stats: {...build.stats},
+                buildId: req.body.buildId,
                 userId: user.id, // Assign the user id to the character
+                locationId: 1
             },});
 
         return res.status(200).json({data: player});
@@ -83,5 +82,51 @@ const getCharacter = async (req, res) => {
     }
 }
 
+// Get all items for a character
+const characterItems = async (req, res) => {
+    try{
+        const {id} = req.user;
+        const user = await prisma.user.findUnique({ where: { id: Number(id) },
+        include: {
+            characters: true
+        }
+         });
+         
+         //check if the character belongs to the user
+         const characterAvailable = user.characters.find(character => character.id === Number(req.body.characterId));
+         if(!characterAvailable){
+                return res.status(401).json({error: 'You are not authorized to view this character'});
+         }
+            
+        
+        const data = await prisma.itemChraracter.findMany({
+            where: {
+                characterId: Number(req.body.characterId)
+            },
+            select: {
+                item: true
+            }
 
-export { createCharacter, getAllCharacters, getCharacter };
+        });
+        return res.status(200).json({data: data});
+    }catch(error){
+        return res.status(500).json({error: error.message});
+    }
+}
+
+// Add an item to a character
+const addItemToCharacter = async (req, res) => {
+  try {
+    const data = await prisma.itemChraracter.create({
+      data: {
+        characterId: Number(req.body.characterId),
+        itemId: Number(req.body.itemId),
+      },
+    });
+    return res.status(200).json({ data: data });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+export { createCharacter, getAllCharacters, getCharacter, characterItems, addItemToCharacter };
