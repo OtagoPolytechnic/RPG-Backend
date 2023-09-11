@@ -14,7 +14,7 @@ const seedSuperAdminUsers = async () => {
   await prisma.user.createMany({
     data: superAdminUsers,
   });
-  console.log('created');
+  console.log('Super Admins Created');
 };
 
 seedSuperAdminUsers()

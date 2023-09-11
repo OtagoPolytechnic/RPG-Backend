@@ -30,13 +30,18 @@ model Build {
 }
 
 model Character {
-  name    String @unique
-  gender  Gender
-  stats   Json
-  buildId Int
-  userId  Int
-  build   Build  @relation(fields: [buildId], references: [id], onDelete: Cascade)
-  user    User   @relation(fields: [userId], references: [id])
+  id            Int             @id @default(autoincrement())
+  name          String          @unique
+  gender        Gender
+  stats         Json
+  buildId       Int
+  userId        Int
+  locationId Int
+  build         Build           @relation(fields: [buildId], references: [id], onDelete: Cascade)
+  user          User            @relation(fields: [userId], references: [id])
+  location   Location @relation(fields: [locationId], references: [id])
+  itemCharacter ItemChraracter[]
+
 }
 
 model User {
@@ -47,3 +52,29 @@ model User {
   createdAt  DateTime    @default(now())
   characters Character[]
 }
+
+
+model Item {
+  id            Int             @id @default(autoincrement())
+  name          String          
+  type          String
+  level         Int
+  itemCharacter ItemChraracter[]
+}
+
+model ItemChraracter {
+  id            Int             @id @default(autoincrement())
+  itemId        Int
+  characterId   Int
+  item          Item            @relation(fields: [itemId], references: [id])
+  character     Character       @relation(fields: [characterId], references: [id])
+  }
+
+model Location {
+  id          Int         @id @default(autoincrement())
+  name        String      @unique
+  description String
+  items       Int[]
+  character   Character[]
+}
+
