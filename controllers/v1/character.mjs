@@ -16,8 +16,6 @@ const createCharacter = async (req, res) => {
         const user = await prisma.user.findUnique({ where: { id: Number(id) } });
 
         const build = await prisma.build.findUnique({ where: { id: Number(buildId)  } });
-
-        console.log(build);
          // Check if the user exists
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
@@ -27,13 +25,11 @@ const createCharacter = async (req, res) => {
         const player = await prisma.character.create({
             data: {
                 name: req.body.name,
-                buildId: build.id,
                 gender: req.body.gender,
                 stats: {...build.stats},
+                buildId: req.body.buildId,
                 userId: user.id, // Assign the user id to the character
-
-            
-    }});
+            },});
 
         return res.status(200).json({data: player});
     }catch(error){
