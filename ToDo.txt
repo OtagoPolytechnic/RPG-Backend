@@ -2,7 +2,7 @@ Reuben's To Do list
 
 DONE - 1. Register new user test
 
-2. login test
+DONE - 2. login test
 
 3. Character create test
 

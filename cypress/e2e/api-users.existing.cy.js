@@ -1,4 +1,3 @@
-
 describe("existing users", () => {
   let userId;
   let token;
@@ -10,7 +9,7 @@ describe("existing users", () => {
       url: "http://localhost:3001/api/v1/auth/username",
       body: {
         username: "Freddy Testman",
-        // password: 'Ft3st123'
+        password: "Ft3st123",
       },
       failOnStatusCode: false,
     }).then((response) => {
