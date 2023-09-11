@@ -34,12 +34,12 @@ model Character {
   name          String           @unique
   gender        Gender
   stats         Json
-  buildId       Int?
-  userId        Int?
-  locationId    Int?
-  build         Build?           @relation(fields: [buildId], references: [id])
-  user          User?            @relation(fields: [userId], references: [id])
-  location   Location?            @relation(fields: [locationId], references: [id])
+  buildId       Int
+  userId        Int
+  locationId    Int
+  build         Build           @relation(fields: [buildId], references: [id])
+  user          User            @relation(fields: [userId], references: [id])
+  location   Location            @relation(fields: [locationId], references: [id])
   itemCharacter ItemChraracter[]
 }
 
