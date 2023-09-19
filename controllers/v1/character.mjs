@@ -68,7 +68,7 @@ const getCharacter = async (req, res) => {
         // Fetch a character with the given name and associated with the user
         const character = await prisma.character.findUnique({
             where: {
-                id: Number(req.params.id)
+                id: Number(req.params.characterId)
             },
             include: {
                 build: true
@@ -147,4 +147,51 @@ const addItemToCharacter = async (req, res) => {
   }
 };
 
-export { createCharacter, getAllCharacters, getCharacter, characterItems, addItemToCharacter };
+const updateCharacter = async (req, res) => {
+    try{
+    const {id} = req.user;
+    const user = await prisma.user.findUnique({ where: { id: Number(id) },
+    include: {
+        characters: true
+    }
+     });
+     
+     //check if the character belongs to the user
+     const characterAvailable = user.characters.find(character => character.id === Number(req.params.characterId));
+     if(!characterAvailable){
+            return res.status(401).json({error: 'You are not authorized to view this character'});
+     }
+
+     const character = await prisma.character.findUnique({
+        where: {
+            id: Number(req.params.characterId)
+        }});
+
+        if(!character){
+            return res.status(404).json({error: 'Character not found'});
+        }
+
+        const { ...data } = req.body;
+
+        const updatedCharacter = await prisma.character.update({
+            where: {
+                id: Number(req.params.characterId)
+            },
+            data
+        });
+
+        return res.json({
+            msg: `${character.name} has been successfully updated`,
+            data: updatedCharacter,
+          });
+    }catch(error){
+        return res.status(500).json({error: error.message});
+    }
+    
+
+
+
+
+}
+
+export { createCharacter, getAllCharacters, getCharacter, characterItems, addItemToCharacter, updateCharacter };
