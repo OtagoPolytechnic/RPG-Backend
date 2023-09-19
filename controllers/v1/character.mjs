@@ -65,7 +65,6 @@ const getAllCharacters = async (req, res) => {
 
 const getCharacter = async (req, res) => {
     try{
-        console.log(req.params.id)
         // Fetch a character with the given name and associated with the user
         const character = await prisma.character.findUnique({
             where: {
@@ -122,13 +121,27 @@ const characterItems = async (req, res) => {
 // Add an item to a character
 const addItemToCharacter = async (req, res) => {
   try {
+    const {id} = req.user;
+    const user = await prisma.user.findUnique({ where: { id: Number(id) },
+    include: {
+        characters: true
+    }
+     });
+     
+     //check if the character belongs to the user
+     const characterAvailable = user.characters.find(character => character.id === Number(req.body.characterId));
+     if(!characterAvailable){
+            return res.status(401).json({error: 'You are not authorized to view this character'});
+     }
+
+
     const data = await prisma.itemChraracter.create({
       data: {
         characterId: Number(req.body.characterId),
         itemId: Number(req.body.itemId),
       },
     });
-    return res.status(200).json({ data: data });
+    return res.status(200).json({ data: data, message: "Item added" });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
