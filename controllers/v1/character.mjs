@@ -65,19 +65,22 @@ const getAllCharacters = async (req, res) => {
 
 const getCharacter = async (req, res) => {
     try{
-        // Extract the user id from the request
-        const {id} = req.user;
+        console.log(req.params.id)
         // Fetch a character with the given name and associated with the user
         const character = await prisma.character.findUnique({
             where: {
-                name: req.params.name,//Character's name from the request parameter
-                userId: Number(id)
-
+                id: Number(req.params.id)
             },
             include: {
                 build: true
             }
         });
+
+        const {id} = req.user;
+        if(character.userId !== Number(id)){
+            return res.status(401).json({error: 'You are not authorized to view this character'});
+        }
+
         return res.status(200).json({data: character});
     }catch(error){
         return res.status(500).json({error: error.message});
