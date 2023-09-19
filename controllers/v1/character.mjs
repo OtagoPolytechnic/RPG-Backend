@@ -172,11 +172,10 @@ const updateCharacter = async (req, res) => {
         }
 
         const { ...data } = req.body;
-        console.log(Object.keys(data));
 
         const noUpdate = ['id', 'userId', 'buildId', 'gender', 'name']
         if(noUpdate.some(key => Object.keys(data).includes(key))){
-            return res.status(400).json({error: 'You cannot update this field'});
+            return res.status(400).json({error: 'A field you are trying to update is not allowed'});
         }
 
         const updatedCharacter = await prisma.character.update({
