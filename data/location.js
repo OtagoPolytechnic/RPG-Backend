@@ -6,11 +6,16 @@ const locations = [
       items: [1]
     },
     {
-      name: "Starter Island.",
-      description: "On this island there is a person to talk to.",
+      name: "The Hub",
+      description: "This is the starting location of the game. Located here is the Merchant which you can trade with. To the east there is a path that leads to the lake. To the west there is the start of a dense forest. To the north there is a character waiting to greet you.",
       level: 1,
       items: [4]
-
+    },
+    {
+      name: "Merchant",
+      description: "Merchant who sells basic supplies",
+      level: 1,
+      items: [2,3]
     }
   ];
   
