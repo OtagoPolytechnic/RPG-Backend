@@ -10,7 +10,6 @@ const createItem = async (req, res) => {
 
         // Find the user using the extracted user id
         const user = await prisma.user.findUnique({ where: { id: Number(id) } });
-        console.log()
 
         if(user.role !== 'SUPER_ADMIN'){
             return res.status(401).json({error: 'You are not authorized to create an item'});
