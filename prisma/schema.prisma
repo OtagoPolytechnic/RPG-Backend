@@ -72,6 +72,7 @@ model Location {
   id          Int         @id @default(autoincrement())
   name        String      @unique
   description String
+  levelRequirement Int 
   items       Int[]
   character   Character[]
 }
