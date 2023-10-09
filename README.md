@@ -2,36 +2,20 @@
 
 Welcome to the RPG-Backend, a powerful Javascript and Express-based backend application designed to bring your RPG gaming experience to the next level. This application leverages PostgreSQL as the robust database system, combined with Prisma as the seamless ORM solution.
 
-## Endpoints
 
-### Registration
+### Initial Set-Up
 
-- **Endpoint:** `/auth/register`
-- **Method:** POST
-- **Description:** Allow new users to create an account for logging in and connecting characters to their accounts.
+1. Clone down the repo.
+2. You must have Node installed on your computer.
+3. Open a terminal, navigate to the root directory of the project.
+4. Run the command `npm i` or `npm install`.
+5. You need to create an env with a `DATABASE_URL`, `PORT`, `JWT_SECRET`, `JWT_LIFETIME`.
 
-### Login
+### Scripts Available:
 
-- **Endpoint:** `/auth/login`
-- **Method:** POST
-- **Description:** User login. Requires the token returned for accessing other features.
+Using `npm run`
 
-### Create Character
-
-- **Endpoint:** `/character/create`
-- **Method:** POST
-- **Description:** Craft a unique character for a user. Users have the flexibility to create multiple characters.
-
-### Browse Builds
-
-- **Endpoint:** `/builds`
-- **Method:** GET
-- **Description:** Retrieve a comprehensive list of all available character builds accessible to the user.
-
-### Create Builds (Admin)
-
-- **Endpoint:** `/builds/create`
-- **Method:** GET
-- **Description:** Specifically designed for admin users, this endpoint facilitates the seeding of a foundational set of character builds.
-
-Embark on your RPG adventure with RPG-Backend, where registration, character creation, and build exploration await!
+- `start`: starts local deployment using nodemon.
+- `migration`: runs a database migration.
+- `commit`: runs commitizen.
+- `seed:create`: creates Super Admin users.
