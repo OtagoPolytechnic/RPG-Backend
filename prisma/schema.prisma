@@ -37,6 +37,8 @@ model Character {
   buildId       Int
   userId        Int
   locationId    Int
+  currency      Int
+  XP            Int
   build         Build           @relation(fields: [buildId], references: [id])
   user          User            @relation(fields: [userId], references: [id])
   location   Location            @relation(fields: [locationId], references: [id])
@@ -57,6 +59,7 @@ model Item {
   name          String
   type          String
   level         Int
+  cost         Int
   itemCharacter ItemChraracter[]
 }
 
