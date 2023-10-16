@@ -31,6 +31,10 @@ const sellItem = async (req, res) => {
         }
 
         const item = req.params.itemId;
+
+        character.currency += item.cost;
+
+        console.log(character);
         
 
 
