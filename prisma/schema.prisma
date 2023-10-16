@@ -59,7 +59,9 @@ model Item {
   name          String
   type          String
   level         Int
-  cost         Int
+  rarity        String
+  buyCost       Int
+  sellPrice     Int
   itemCharacter ItemChraracter[]
 }
 
