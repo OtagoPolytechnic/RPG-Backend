@@ -126,7 +126,7 @@ const addItemToCharacter = async (req, res) => {
           characters: true,
         },
       });
-  
+      console.log(user);
       // Check if the character belongs to the user.
       const characterAvailable = user.characters.find((character) => character.id === Number(req.body.characterId));
       if (!characterAvailable) {
@@ -148,7 +148,7 @@ const addItemToCharacter = async (req, res) => {
       });
   
       // Check if the character has enough currency to purchase the item.
-      if (character.currency < item.cost) {
+      if (character.currency < item.buyCost) {
         return res.status(400).json({ error: "Insufficient funds" });
       }
   
@@ -158,7 +158,7 @@ const addItemToCharacter = async (req, res) => {
           id: Number(req.body.characterId),
         },
         data: {
-          currency: character.currency - item.cost,
+          currency: Number(character.currency - item.buyCost),
         },
       });
   

@@ -42,7 +42,7 @@ model Character {
   build         Build           @relation(fields: [buildId], references: [id])
   user          User            @relation(fields: [userId], references: [id])
   location   Location            @relation(fields: [locationId], references: [id])
-  itemCharacter ItemChraracter[]
+  itemCharacter ItemCharacter[]
 }
 
 model User {
@@ -62,10 +62,10 @@ model Item {
   rarity        String
   buyCost       Int
   sellPrice     Int
-  itemCharacter ItemChraracter[]
+  itemCharacter ItemCharacter[]
 }
 
-model ItemChraracter {
+model ItemCharacter {
   id          Int       @id @default(autoincrement())
   itemId      Int
   characterId Int
