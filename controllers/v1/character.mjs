@@ -139,6 +139,11 @@ const addItemToCharacter = async (req, res) => {
           id: Number(req.body.characterId),
         },
       });
+
+      // Check if the character exists.
+      if (!character) {
+        return res.status(404).json({ error: "Character not found" });
+      }
   
       // Fetch the item from the database based on the item ID.
       const item = await prisma.item.findUnique({
@@ -146,21 +151,11 @@ const addItemToCharacter = async (req, res) => {
           id: Number(req.body.itemId),
         },
       });
-  
-      // Check if the character has enough currency to purchase the item.
-      if (character.currency < item.buyCost) {
-        return res.status(400).json({ error: "Insufficient funds" });
+
+      // Check if the item exists.
+      if (!item) {
+        return res.status(404).json({ error: "Item not found" });
       }
-  
-      // Update the character's currency after purchasing the item.
-      const updatedCharacter = await prisma.character.update({
-        where: {
-          id: Number(req.body.characterId),
-        },
-        data: {
-          currency: Number(character.currency - item.buyCost),
-        },
-      });
   
       // Create a record of the item being added to the character's inventory.
       const data = await prisma.itemCharacter.create({
