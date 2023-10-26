@@ -4,7 +4,7 @@ import { sellItem } from '../../controllers/v1/merchant.mjs';
 const router = Router();
 
 // Get all categories and create categories
-router.route('/:itemId').post(sellItem)
+router.route('/').post(sellItem)
 
 
 
