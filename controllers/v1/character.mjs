@@ -102,7 +102,7 @@ const characterItems = async (req, res) => {
       return res.status(401).json({ error: "You are not authorized to view this character" });
     }
 
-    const data = await prisma.itemChraracter.findMany({
+    const data = await prisma.itemCharacter.findMany({
       where: {
         characterId: Number(req.body.characterId),
       },
