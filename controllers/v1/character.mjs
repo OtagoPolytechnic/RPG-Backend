@@ -67,7 +67,7 @@ const getCharacter = async (req, res) => {
     // Fetch a character with the given name and associated with the user
     const character = await prisma.character.findUnique({
       where: {
-        id: Number(req.params.characterId),
+        name: req.params.name,
       },
       include: {
         build: true,
