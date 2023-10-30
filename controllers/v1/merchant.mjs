@@ -8,6 +8,7 @@ const prisma = new PrismaClient();
 const sellItem = async (req, res) => {
     try{
         const {id} = req.user;
+        console.log(id)
 
         const user = await prisma.user.findUnique({ where: { id: Number(id) } })
 
@@ -18,28 +19,40 @@ const sellItem = async (req, res) => {
 
         const character = await prisma.character.findUnique({
             where: {
-              id: Number(req.params.characterId),
+              id: Number(req.body.characterId),
             },
         });
 
-        if (character.userId !== Number(id)) {
-            return res.status(401).json({ error: "You are not authorized to view this character" });
-          }
+        const item = await prisma.item.findUnique({
+            where : {
+                id: Number(req.body.itemId),
+            }
+        });
+
+        console.log(item)
 
         if(character.locationId !== 3) {
             return res.status(401).json({ error: "You are not in the merchant location"});
         }
 
-        const item = req.params.itemId;
 
-        character.currency += item.cost;
+        character.currency += item.sellPrice;
 
-        console.log(character);
+        const updateCharacter = await prisma.character.update({
+            where : {
+                id: Number(req.body.characterId),
+            },
+            data: {
+                currency: Number(character.currency)
+            },
+        });
+
+
         
 
-
+        return res.status(200).json({ msg:"Item successfully sold, your new balance is " + character.currency});
     }catch(e){
-        return res.status(500).json({error: error.message});
+        return res.status(500).json({error: e.message});
     }
 };
 
