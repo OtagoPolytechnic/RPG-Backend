@@ -166,7 +166,7 @@ const addItemToCharacter = async (req, res) => {
       });
   
       // Return a success response with relevant data.
-      return res.status(200).json({ data: data, updatedCharacter: updatedCharacter, message: "Item added" });
+      return res.status(200).json({ data: data, message: "Item added" });
     } catch (error) {
       // Handle any errors that occur during the process.
       return res.status(500).json({ error: error.message });
