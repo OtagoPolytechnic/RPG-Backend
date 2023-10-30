@@ -17,6 +17,7 @@ import character from './routes/v1/character.js';
 import builds from './routes/v1/builds.js';
 import items from './routes/v1/items.js';
 import location from './routes/v1/location.js';
+import merchant from './routes/v1/merchant.js';
 
 dotenv.config();
 const app = express();
@@ -60,6 +61,7 @@ app.use(`/${BASE_URL}/${CURRENT_VERSION}/character`, authRoute, character);
 app.use(`/${BASE_URL}/${CURRENT_VERSION}/items`, authRoute, items);
 app.use(`/${BASE_URL}/${CURRENT_VERSION}/auth`, auth);
 app.use(`/${BASE_URL}/${CURRENT_VERSION}/location`, authRoute, location);
+app.use(`/${BASE_URL}/${CURRENT_VERSION}/merchant`, authRoute, merchant);
 app.get(`/${BASE_URL}/${CURRENT_VERSION}`, (req, res) =>
   res.status(200).json(getAvailableEndpoints())
 );

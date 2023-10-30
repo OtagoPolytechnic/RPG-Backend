@@ -30,18 +30,19 @@ model Build {
 }
 
 model Character {
-  id            Int             @id @default(autoincrement())
-  name          String          @unique
+  id            Int              @id @default(autoincrement())
+  name          String           @unique
   gender        Gender
   stats         Json
   buildId       Int
   userId        Int
-  locationId Int
-  build         Build           @relation(fields: [buildId], references: [id], onDelete: Cascade)
+  locationId    Int
+  currency      Int
+  XP            Int
+  build         Build           @relation(fields: [buildId], references: [id])
   user          User            @relation(fields: [userId], references: [id])
-  location   Location @relation(fields: [locationId], references: [id])
-  itemCharacter ItemChraracter[]
-
+  location   Location            @relation(fields: [locationId], references: [id])
+  itemCharacter ItemCharacter[]
 }
 
 model User {
@@ -53,28 +54,30 @@ model User {
   characters Character[]
 }
 
-
 model Item {
-  id            Int             @id @default(autoincrement())
-  name          String          
+  id            Int              @id @default(autoincrement())
+  name          String
   type          String
   level         Int
-  itemCharacter ItemChraracter[]
+  rarity        String
+  buyCost       Int
+  sellPrice     Int
+  itemCharacter ItemCharacter[]
 }
 
-model ItemChraracter {
-  id            Int             @id @default(autoincrement())
-  itemId        Int
-  characterId   Int
-  item          Item            @relation(fields: [itemId], references: [id])
-  character     Character       @relation(fields: [characterId], references: [id])
-  }
+model ItemCharacter {
+  id          Int       @id @default(autoincrement())
+  itemId      Int
+  characterId Int
+  item        Item      @relation(fields: [itemId], references: [id])
+  character   Character @relation(fields: [characterId], references: [id])
+}
 
 model Location {
   id          Int         @id @default(autoincrement())
   name        String      @unique
   description String
+  levelRequirement Int 
   items       Int[]
   character   Character[]
 }
-
