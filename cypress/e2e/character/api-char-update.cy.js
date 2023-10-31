@@ -8,7 +8,7 @@ let initialCurrency;
 let initialXP;
 
 describe("Log in user", () => {
-    it("Admin user Login and get token", () => {
+    it("BASIC_ROLE user login and get token", () => {
         cy.request({
             method: "POST",
             url: "http://localhost:3001/api/v1/auth/login",
