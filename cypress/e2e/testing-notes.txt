@@ -9,18 +9,18 @@ Completed Tests
 [Test Item 4.1.06] api-char-update.cy.js
 [Test Item 4.1.07] api-char-add-inventory.cy.js
 [Test Item 4.1.08] api-char-check-inventory.cy.js
+[Test Item 4.1.09] api-builds-list-all.cy.js
 
 
 ---------------------
 Tests that need fixed
 ---------------------
-[Currently commented out - need to list all users] api-users-existing-users.cy.js
+[Currently commented out] api-users-existing-users.cy.js
 
 
 -----------------------
 Tests that need started
 -----------------------
-[Test Item 4.1.09] api-builds-list-all.cy.js
 [Test Item 4.1.10] api-builds-create.cy.js (Need ADMIN user for this)
 [Test Item 4.1.11] api-items-list-all.cy.js
 [Test Item 4.1.12] api-items-create.cy.js
