@@ -1,6 +1,6 @@
 //Test Item 4.1.05 /character:name
 let token; //Used to pass a token between login and checking character name 
-let charName = "Jimmy";
+let charName = "Steve";
 
 describe("Log in user", () => {
     it("Admin user Login and get token", () => {
@@ -51,6 +51,9 @@ describe("Check character name", () => {
             console.log(response)
             expect(response.status).to.eq(200);
             expect(response.body).to.have.property("data");
+            expect(response.body.data.name).to.eq(`${charName}`);
+            expect(response.body.data.gender).to.eq("MALE");
+            expect(response.body.data.buildId).to.eq(2);
         });
     });
 });
