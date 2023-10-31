@@ -20,7 +20,7 @@ describe("Log in user", () => {
 
 describe("character get", () => {
     // Fetches a character
-    it("Fetches a character", () => {
+    it("Fetches a single character", () => {
       cy.request({
         method: "GET",
         url: "http://localhost:3001/api/v1/character",
