@@ -112,7 +112,7 @@ const login = async (req, res) => {
     });
 
     if (!user) {
-      return res.status(401).json({ msg: 'Invalid  username' });
+      return res.status(401).json({ msg: 'User not found' });
     }
 
     /**
