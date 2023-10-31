@@ -16,8 +16,6 @@ describe("Log in user", () => {
     });
 })
 
-// });
-
 describe("character create", () => {
     // Creates a character
     it("Creates a character", () => {
@@ -29,11 +27,13 @@ describe("character create", () => {
           "gender": "MALE",
           "buildId": 1
           },
-        authorization: token,
+          headers: {
+            Authorization: `Bearer ${token}` // Set the Authorization header with the token
+          }
       }).then((response) => {
         expect(response.status).to.eq(200);
-        expect(response.body).to.have.property("msg");
-        // expect(response.body.msg).to.eq("Character successfully created");
+        expect(response.body).to.have.property("data");
+        expect(response.body.data.name).to.eq("bob_test");
 
       });
     }); // END OF Creates a character
