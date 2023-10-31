@@ -11,6 +11,7 @@ describe("Log in user", () => {
           },
       }).then((response) => {
           expect(response.status).to.eq(200);
+          expect(response.body.msg).to.eq("Freddy Testman successfully logged in");
           expect(response.body).to.have.property("token");
           token = response.body.token;
       });
