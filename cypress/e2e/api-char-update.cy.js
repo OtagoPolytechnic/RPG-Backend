@@ -1,7 +1,11 @@
 //Test Item 4.1.06 /character/update:characterId
+//Description: Logs in as a user, creates a fresh character and runs two updates on currency and XP values in subsequent tests
+
+//Required Variables for character auth + updates
 let token; //Used to pass a token between login and checking character name 
 let charId;
 let initialCurrency;
+let initialXP;
 
 describe("Log in user", () => {
     it("Admin user Login and get token", () => {
@@ -26,7 +30,7 @@ describe("Create character", () => {
             method: "POST",
             url: "http://localhost:3001/api/v1/character/create",
             body: {
-                "name": "Stella",
+                "name": "Janet",
                 "gender": "FEMALE",
                 "buildId": 2
             },
@@ -41,6 +45,8 @@ describe("Create character", () => {
             charId = response.body.data.userId;
             expect(response.body.data).to.have.property("currency");
             initialCurrency = response.body.data.currency;
+            expect(response.body.data).to.have.property("XP");
+            initialXP = response.body.data.XP;
         });
     });
 });
@@ -60,6 +66,25 @@ describe("Update Character", () => {
             console.log(response)
             expect(response.status).to.eq(200);
             expect(response.body.data.currency).to.be.greaterThan(initialCurrency);
+        });
+    });
+});
+
+describe("Update Character", () => {
+    it("Updates the characters XP using characterId", () => {
+        cy.request({
+            method: "PUT",
+            url: `http://localhost:3001/api/v1/character/update/${charId}`,
+            body: {
+                "XP": initialXP+120,
+            },
+            headers: {
+                Authorization: `Bearer ${token}` // Set the Authorization header with the token
+            }
+        }).then((response) => {
+            console.log(response)
+            expect(response.status).to.eq(200);
+            expect(response.body.data.XP).to.be.greaterThan(initialXP);
         });
     });
 });
