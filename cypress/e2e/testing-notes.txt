@@ -4,13 +4,13 @@ Completed Tests
 [Test Item 4.1.01] api-users-create-user.cy.js
 [Test Item 4.1.02] api-users-login-user.cy.js
 [Test Item 4.1.03] api-users-create-char.cy.js
+[Test Item 4.1.04] api-users-get-char.cy.js
 
 
 ---------------------
 Tests that need fixed
 ---------------------
 [Currently commented out] api-users-existing-users.cy.js
-[Test Item 4.1.04] api-users-get-char.cy.js (No token provided with 2nd test)
 
 
 -----------------------

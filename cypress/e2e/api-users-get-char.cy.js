@@ -1,6 +1,6 @@
+let token;
 describe("Log in user", () => {
   let userId;
-  let token;
   it("Admin user Login and get token", () => {
     cy.request({
         method: "POST",
@@ -29,10 +29,15 @@ describe("character get", () => {
           "gender": "MALE",
           "buildId": 1
           },
+          headers: {
+            Authorization: `Bearer ${token}` // Set the Authorization header with the token
+          }
       }).then((response) => {
         expect(response.status).to.eq(200);
-        expect(response.body).to.have.property("msg");
-        // expect(response.body.msg).to.eq("Character retrieved");
+        expect(response.body).to.have.property("data");
+        expect(response.body.data[0].name).to.eq("bob_test");
+        expect(response.body.data[0].gender).to.eq("MALE");
+        expect(response.body.data[0].buildId).to.eq(1);
       });
     }); // END OF Fetches a character
   });
