@@ -1,5 +1,5 @@
 //Test Item 4.1.12 /items/create 
-//Description: Logs in
+//Description: Logs in as a basic user trys to create item (invalid). Then logs in as ADMIN and creates an item successfully
 
 let token; //Used to pass a token between login and checking character name 
 
