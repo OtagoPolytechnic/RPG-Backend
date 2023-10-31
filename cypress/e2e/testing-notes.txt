@@ -3,13 +3,13 @@ Completed Tests
 ---------------
 [Test Item 4.1.01] api-users-create-user.cy.js
 [Test Item 4.1.02] api-users-login-user.cy.js
+[Test Item 4.1.03] api-users-create-char.cy.js
 
 
 ---------------------
 Tests that need fixed
 ---------------------
 [Currently commented out] api-users-existing-users.cy.js
-[Test Item 4.1.03] api-users-create-char.cy.js (No token provided with 2nd test)
 [Test Item 4.1.04] api-users-get-char.cy.js (No token provided with 2nd test)
 
 
@@ -24,6 +24,16 @@ Tests that need started
 [Test Item 4.1.10] api-builds-create.cy.js (Need ADMIN user for this)
 [Test Item 4.1.11] api-items-list-all.cy.js
 [Test Item 4.1.12] api-items-create.cy.js
+
+
+-----------------------
+Tests Item Groups that need started
+-----------------------
+[Test Item 4.2.XX] Testing Valid and Invalid data types
+[Test Item 4.3.XX] Testing authentication (Basic and Admin roles)
+[Test Item 4.4.XX] Error Handling
+[Test Item 4.5.XX] Boundary Cases
+[Test Item 4.6.XX] Data Validations within API
 
 -----------------
 Other suggestions
