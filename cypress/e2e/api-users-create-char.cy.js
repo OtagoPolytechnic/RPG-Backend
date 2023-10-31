@@ -1,5 +1,8 @@
 //Test Item 4.1.03 /character/create
-let token;
+//Description: Tests creating a new character and assigning it to a userId using the token
+
+let token; //Used to pass a login token between tests
+
 describe("Log in user", () => {
   it("Admin user Login and get token", () => {
     cy.request({

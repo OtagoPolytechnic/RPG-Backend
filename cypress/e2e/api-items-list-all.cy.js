@@ -1,7 +1,6 @@
 //Test Item 4.1.11 /items
-//Description: Displays all of the available builds that a user can choose from
+//Description: Displays all of the available items that a user can choose from
 
-//Required Variables for character auth + updates
 let token; //Used to pass a token between login and checking character name 
 
 describe("Log in user", () => {

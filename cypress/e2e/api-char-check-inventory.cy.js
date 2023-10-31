@@ -1,9 +1,8 @@
-//Test Item 4.1.06 /character/update:characterId
-//Description: Logs in as a user, creates a fresh character and add a correct/incorrect item to the inventory
+//Test Item 4.1.08 /character/inventory/:characterId
+//Description: Logs in as a user, creates a fresh character, adds item to inventory and checks for it from endpoint
 
-//Required Variables for character auth + updates
 let token; //Used to pass a token between login and checking character name 
-let charId;
+let charId; //ID as variable due to multiple checks through tests
 
 describe("Log in user", () => {
     it("Admin user Login and get token", () => {

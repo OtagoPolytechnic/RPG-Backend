@@ -1,4 +1,5 @@
 //Test Item 4.1.01 /auth/register
+//Description: Registers two new users for future testing
 
 describe("user create", () => {
   // Registers a new user

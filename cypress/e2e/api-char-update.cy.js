@@ -1,4 +1,4 @@
-//Test Item 4.1.06 /character/update:characterId
+//Test Item 4.1.06 /character/update/:characterId
 //Description: Logs in as a user, creates a fresh character and runs two updates on currency and XP values in subsequent tests
 
 //Required Variables for character auth + updates

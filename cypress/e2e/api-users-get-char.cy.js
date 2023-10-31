@@ -1,5 +1,7 @@
 //Test Item 4.1.04 /character
-let token; //Used to pass a token between login and checking character name 
+//Description: Logs in and creates two new characters. Test that these characters return from endpoint with correct datatypes
+ 
+let token; //Used to pass a login token between tests
 
 describe("Log in user", () => {
     it("Admin user Login and get token", () => {

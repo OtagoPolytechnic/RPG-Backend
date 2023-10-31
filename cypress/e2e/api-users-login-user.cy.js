@@ -1,4 +1,5 @@
 //Test Item 4.1.02 /auth/login
+//Description: Logs in as a previously created user and store the token
 
 describe("Log in user", () => {
   let token;

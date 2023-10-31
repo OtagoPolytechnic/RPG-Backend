@@ -1,4 +1,6 @@
-//Test Item 4.1.05 /character:name
+//Test Item 4.1.05 /character/:name
+//Description: Logs in, creates a new character. Tests getting data for the character from the endpoint using just the character name
+
 let token; //Used to pass a token between login and checking character name 
 let charName = "Jimmy"; //Name as variable due to multiple checks through code
 
