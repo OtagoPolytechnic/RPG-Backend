@@ -57,7 +57,6 @@ describe("Add item to inventory", () => {
                 Authorization: `Bearer ${token}` // Set the Authorization header with the token
             }
         }).then((response) => {
-            console.log(response)
             expect(response.status).to.eq(200);
             expect(response.body).to.have.property("data");
             expect(response.body.message).to.eq("Item added");
@@ -79,7 +78,6 @@ describe("Add incorrect item to inventory", () => {
                 Authorization: `Bearer ${token}` // Set the Authorization header with the token
             }
         }).then((response) => {
-            console.log(response)
             expect(response.status).to.eq(404);
             expect(response.body).to.have.property("error");
             expect(response.body.error).to.eq("Item not found");

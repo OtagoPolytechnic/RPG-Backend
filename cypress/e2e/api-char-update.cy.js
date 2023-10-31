@@ -63,7 +63,6 @@ describe("Update Character", () => {
                 Authorization: `Bearer ${token}` // Set the Authorization header with the token
             }
         }).then((response) => {
-            console.log(response)
             expect(response.status).to.eq(200);
             expect(response.body.data.currency).to.be.greaterThan(initialCurrency);
         });
@@ -82,7 +81,6 @@ describe("Update Character", () => {
                 Authorization: `Bearer ${token}` // Set the Authorization header with the token
             }
         }).then((response) => {
-            console.log(response)
             expect(response.status).to.eq(200);
             expect(response.body.data.XP).to.be.greaterThan(initialXP);
         });

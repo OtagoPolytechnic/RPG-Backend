@@ -48,7 +48,6 @@ describe("Check character name", () => {
                 Authorization: `Bearer ${token}` // Set the Authorization header with the token
             }
         }).then((response) => {
-            console.log(response)
             expect(response.status).to.eq(200);
             expect(response.body).to.have.property("data");
             expect(response.body.data.name).to.eq(`${charName}`);
