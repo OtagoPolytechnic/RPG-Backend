@@ -1,3 +1,5 @@
+//Test Item 4.1.03 /character/create
+
 describe("Log in user", () => {
   let userId;
   let token;

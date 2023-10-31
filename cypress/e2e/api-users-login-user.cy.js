@@ -1,3 +1,5 @@
+//Test Item 4.1.02 /auth/login
+
 describe("Log in user", () => {
     let userId;
     let token;

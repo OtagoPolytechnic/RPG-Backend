@@ -6,6 +6,8 @@ Completed Tests
 [Test Item 4.1.03] api-users-create-char.cy.js
 [Test Item 4.1.04] api-users-get-char.cy.js
 [Test Item 4.1.05] api-char-get-name.cy.js
+[Test Item 4.1.06] api-char-update.cy.js
+
 
 ---------------------
 Tests that need fixed
@@ -16,7 +18,6 @@ Tests that need fixed
 -----------------------
 Tests that need started
 -----------------------
-[Test Item 4.1.06] api-char-update.cy.js
 [Test Item 4.1.07] api-char-add-inventory.cy.js
 [Test Item 4.1.08] api-char-check-inventory.cy.js
 [Test Item 4.1.09] api-builds-list-all.cy.js

@@ -1,6 +1,6 @@
 //Test Item 4.1.05 /character:name
 let token; //Used to pass a token between login and checking character name 
-let charName = "Jimmy";
+let charName = "Jimmy"; //Name as variable due to multiple checks through code
 
 describe("Log in user", () => {
     it("Admin user Login and get token", () => {

@@ -1,7 +1,5 @@
-//Test Item 4.1.03 /character
+//Test Item 4.1.04 /character
 let token; //Used to pass a token between login and checking character name 
-let charName_01 = "Shane";
-let charName_02 = "Susan";
 
 describe("Log in user", () => {
     it("Admin user Login and get token", () => {
@@ -26,7 +24,7 @@ describe("Create character", () => {
             method: "POST",
             url: "http://localhost:3001/api/v1/character/create",
             body: {
-                "name": charName_01,
+                "name": "Shane",
                 "gender": "MALE",
                 "buildId": 3
             },
@@ -46,7 +44,7 @@ describe("Create character", () => {
           method: "POST",
           url: "http://localhost:3001/api/v1/character/create",
           body: {
-              "name": charName_02,
+              "name": "Susan",
               "gender": "FEMALE",
               "buildId": 1
           },

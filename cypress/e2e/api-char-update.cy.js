@@ -1,7 +1,7 @@
 //Test Item 4.1.06 /character/update:characterId
 let token; //Used to pass a token between login and checking character name 
-let charName = "Steve";
 let charId;
+let initialCurrency;
 
 describe("Log in user", () => {
     it("Admin user Login and get token", () => {
@@ -26,7 +26,7 @@ describe("Create character", () => {
             method: "POST",
             url: "http://localhost:3001/api/v1/character/create",
             body: {
-                "name": charName,
+                "name": "Stella",
                 "gender": "FEMALE",
                 "buildId": 2
             },
@@ -39,17 +39,19 @@ describe("Create character", () => {
             expect(response.body.data.gender).to.eq("FEMALE");
             expect(response.body.data).to.have.property("userId");
             charId = response.body.data.userId;
+            expect(response.body.data).to.have.property("currency");
+            initialCurrency = response.body.data.currency;
         });
     });
 });
 
 describe("Update Character", () => {
-    it("Updates the characters genders using characterId", () => {
+    it("Updates the characters currency using characterId", () => {
         cy.request({
             method: "PUT",
             url: `http://localhost:3001/api/v1/character/update/${charId}`,
             body: {
-                "gender": "MALE",
+                "currency": initialCurrency+2000,
             },
             headers: {
                 Authorization: `Bearer ${token}` // Set the Authorization header with the token
@@ -57,7 +59,7 @@ describe("Update Character", () => {
         }).then((response) => {
             console.log(response)
             expect(response.status).to.eq(200);
-            expect(response.body.data.gender).to.eq("MALE");
+            expect(response.body.data.currency).to.be.greaterThan(initialCurrency);
         });
     });
 });
