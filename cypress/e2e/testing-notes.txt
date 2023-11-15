@@ -13,6 +13,9 @@ Completed Tests
 [Test Item 4.1.11] api-items-list-all.cy.js
 [Test Item 4.1.10] api-builds-create.cy.js (Test written but this code is not in the backend so the test will always fail. No route for /builds/create)
 [Test Item 4.1.12] api-items-create.cy.js
+[Test Item 4.2.01] api-check-item-data.cy.js
+[Test Item 4.2.02] api-invalid-char-data.cy.js
+
 
 ---------------------
 Tests that need fixed
