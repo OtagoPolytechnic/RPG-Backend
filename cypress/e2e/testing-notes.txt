@@ -15,7 +15,7 @@ Completed Tests
 [Test Item 4.1.12] api-items-create.cy.js
 [Test Item 4.2.01] api-check-item-data.cy.js
 [Test Item 4.2.02] api-invalid-char-data.cy.js
-
+[Test Item 4.2.03] api-locations-types.cy.js
 
 ---------------------
 Tests that need fixed
@@ -32,7 +32,6 @@ Tests that need started
 -----------------------
 Tests Item Groups that need started
 -----------------------
-[Test Item 4.2.XX] Testing Valid and Invalid data types
 [Test Item 4.3.XX] Testing authentication (Basic and Admin roles)
 [Test Item 4.4.XX] Error Handling
 [Test Item 4.5.XX] Boundary Cases
