@@ -27,7 +27,7 @@ describe("Create character", () => {
             method: "POST",
             url: "http://localhost:3001/api/v1/character/create",
             body: {
-                "name": "Tom Hanks",
+                "name": "Thomas Shanklin",
                 "gender": "MALE",
                 "buildId": 2
             },

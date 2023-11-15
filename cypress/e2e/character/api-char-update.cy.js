@@ -30,8 +30,8 @@ describe("Create character", () => {
             method: "POST",
             url: "http://localhost:3001/api/v1/character/create",
             body: {
-                "name": "Janet",
-                "gender": "FEMALE",
+                "name": "Ronald J",
+                "gender": "MALE",
                 "buildId": 2
             },
             headers: {
@@ -40,9 +40,11 @@ describe("Create character", () => {
         }).then((response) => {
             expect(response.status).to.eq(200);
             expect(response.body).to.have.property("data");
-            expect(response.body.data.gender).to.eq("FEMALE");
+            expect(response.body.data.gender).to.eq("MALE");
             expect(response.body.data).to.have.property("userId");
-            charId = response.body.data.userId;
+            console.log(response.body.data);
+            charId = response.body.data.id;
+            console.log(charId);
             expect(response.body.data).to.have.property("currency");
             initialCurrency = response.body.data.currency;
             expect(response.body.data).to.have.property("XP");
@@ -57,7 +59,7 @@ describe("Update Character", () => {
             method: "PUT",
             url: `http://localhost:3001/api/v1/character/update/${charId}`,
             body: {
-                "currency": initialCurrency+2000,
+                "currency": initialCurrency+2000
             },
             headers: {
                 Authorization: `Bearer ${token}` // Set the Authorization header with the token
@@ -75,7 +77,7 @@ describe("Update Character", () => {
             method: "PUT",
             url: `http://localhost:3001/api/v1/character/update/${charId}`,
             body: {
-                "XP": initialXP+120,
+                "XP": initialXP+120
             },
             headers: {
                 Authorization: `Bearer ${token}` // Set the Authorization header with the token
