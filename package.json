@@ -10,11 +10,12 @@
     "migration": "npx prisma migrate reset && npx prisma migrate dev",
     "migrate": "npx prisma migrate dev",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed:create": "npx prisma db seed"
+    "seed:create": "npx prisma db seed",
+    "cypress": "cypress open --config watchForFileChanges=false"
   },
   "prisma": {
     "schema": "prisma/schema.prisma",
-    "seed": "node ./prisma/seed/combined-seed.js "
+    "seed": "node ./prisma/seed/combined-seed.js"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
   },
   "devDependencies": {
     "commitizen": "^4.3.0",
+    "cypress": "^12.17.4",
     "cz-conventional-changelog": "^3.3.0",
     "prisma": "^4.16.2"
   },

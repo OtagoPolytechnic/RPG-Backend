@@ -1,5 +1,5 @@
 import { seedLocations } from './location.js';
-import { seedSuperAdminUsers } from './superadmin.mjs';
+import { seedSuperAdminUsers } from './superadmin.js';
 import { seedItems } from './items.js';
 import seedBuilds from './builds.js';
 
