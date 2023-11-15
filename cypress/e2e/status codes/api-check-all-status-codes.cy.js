@@ -1,6 +1,6 @@
 let token; //Used to pass a token between login and checking character name 
 
-describe("Get 200 code", () => {
+describe("Get 201 code", () => {
     it("Registers to get code: 201", () => {
       cy.request({
         method: "POST",
