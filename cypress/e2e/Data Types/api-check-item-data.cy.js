@@ -47,3 +47,63 @@ describe("Check API data types", () => {
         });
     });
 });
+
+describe("Invalid item data - INT", () => {
+    it("Trys adding new item with incorrect data for integers (string) and checks for status response code", () => {
+        cy.request({
+            method: "POST",
+            url: "http://localhost:3001/api/v1/items/create",
+            body: {
+                "name": "InvalidItem1",
+                "type": "Test",
+                "level": "1000",
+                "rarity": "TestRarity",
+                "buyCost": "200",
+                "sellPrice": "100"
+            },
+            failOnStatusCode: false,
+            headers: {
+                Authorization: `Bearer ${token}` // Set the Authorization header with the token
+            }
+        }).then((response) => {
+            //Create a JSON object for response unsuccessful checking
+            let requestBody;
+            if (typeof response.requestBody === 'string') {
+                requestBody = JSON.parse(response.requestBody);
+            } 
+            else {
+                requestBody = response.requestBody;
+            }
+            console.log(response.body.error);
+            expect(response.body.error)//more code here
+            //Check if the API has done any internal error checking to change data types
+            switch (response.status){
+
+                case 200://Check to see if strings convert to int in API
+                    expect(response.status).to.eq(200);
+                    expect(response.requestBody.name).to.eq("InvalidItem1");
+                    expect(response.requestBody.level).to.be.a("number"); 
+                    expect(response.requestBody.buyCost).to.be.a("number");
+                    expect(response.requestBody.sellPrice).to.be.a("number"); 
+                    break;
+
+                case 500://Check to see if stayed as string
+                    expect(response.status).to.eq(500);
+                    if (response.requestBody) {
+                        expect(requestBody.name).to.eq("InvalidItem1");
+                        expect(requestBody.level).to.be.a("string"); 
+                        expect(requestBody.buyCost).to.be.a("string");
+                        expect(requestBody.sellPrice).to.be.a("string");
+                        //console.log(response)
+                    } 
+                    else {
+                        cy.log("Request body is undefined for status 500");
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        });
+    });
+});
