@@ -1,7 +1,5 @@
 let token; //Used to pass a token between login and checking character name
 
-// Auth error checking
-
 describe("Get 201 code", () => {
     it("Registers to get code: 201", () => {
       cy.request({
@@ -39,8 +37,6 @@ describe("Get 400 code", () => {
       method: "POST",
       url: "http://localhost:3001/api/v1/auth/register",
       body: {
-        // username: "",
-        // password: "",
       },
       failOnStatusCode: false,
     }).then((response) => {
@@ -113,8 +109,10 @@ describe("Log in an ADMIN user", () => {
     });
 });
 
-describe("Invalid item data - All Integers", () => {
-    it("Trys adding new item with incorrect data for strings (integers) and checks for status response code", () => {
+  
+
+describe("Get 500 code", () => {
+    it("Trys adding new item with incorrect data for strings to get code: 500", () => {
         cy.request({
             method: "POST",
             url: "http://localhost:3001/api/v1/items/create",
@@ -135,3 +133,32 @@ describe("Invalid item data - All Integers", () => {
         });
     });
 });
+
+
+describe("Get 200 code", () => {
+    it("Creates a character to get code: 200", () => {
+      cy.request({
+        method: "POST",
+        url: "http://localhost:3001/api/v1/character/create",
+        body: {
+            name: "bob",
+            gender: "MALE",
+            stats: {
+                "mana": 1,
+                "attack": 6,
+                "health": 6,
+                "agility": 2,
+                "defense": 4
+            },
+            buildId: 1,
+            userId: 1, // Assign the user id to the character
+            locationId: 1,
+            currency: 100,
+            XP: 0,
+        },
+        failOnStatusCode: false,
+      }).then((response) => {
+        expect(response.status).to.eq(200);
+      });
+    });
+  });
