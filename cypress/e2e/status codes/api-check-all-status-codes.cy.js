@@ -97,33 +97,41 @@ describe("Get 409 code", () => {
   });
 });
 
-// Build error checking
-
-describe("Get 200 code", () => {
-    it("gets build to get code: 200", () => {
+describe("Log in an ADMIN user", () => {
+    it("SUPER_ADMIN user Login and get token", () => {
         cy.request({
-            method: "GET",
-            url: "http://localhost:3001/api/v1/builds/create",
+            method: "POST",
+            url: "http://localhost:3001/api/v1/auth/login",
             body: {
-                "title": "Necromancer",
-                "description": "The Necromancer class fights with an undead army and is adept at fighting in hellish conditions.",
-                "stats" : {
-                    "health": 5,
-                    "attack": 1,
-                    "defense": 9,
-                    "mana": 8,
-                    "agility": 1
-                }
+                username: "admin",
+                password: "test",
+            },
+        }).then((response) => {
+            expect(response.status).to.eq(200);
+            token = response.body.token;
+        });
+    });
+});
+
+describe("Invalid item data - All Integers", () => {
+    it("Trys adding new item with incorrect data for strings (integers) and checks for status response code", () => {
+        cy.request({
+            method: "POST",
+            url: "http://localhost:3001/api/v1/items/create",
+            body: {
+                "name": 100,
+                "type": 200,
+                "level": 5,
+                "rarity": 100,
+                "buyCost": 2,
+                "sellPrice": 1
             },
             failOnStatusCode: false,
             headers: {
                 Authorization: `Bearer ${token}` // Set the Authorization header with the token
             }
         }).then((response) => {
-            console.log(response);
-            expect(response.status).to.eq(200);
-            expect(response.body.data.title).to.eq("Necromancer");
-            expect(response.body.stats.heath).to.be.at.least(1).and.to.be.lessThan(50);
+            expect(response.status).to.eq(500);
         });
     });
 });
